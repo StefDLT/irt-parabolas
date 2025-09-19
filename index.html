@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Las parábolas de Jesús</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Alegreya|Ubuntu|Satisfy&display=swap');
+        body {
+            font-family: 'Ubuntu', sans-serif;
+            margin: 0;
+            background-image: linear-gradient(135deg, #eee, #aaa);
+            background: 
+            conic-gradient(from 225deg at .5rem, #999 0deg 45deg, #0000 45deg 360deg),
+            conic-gradient(from 45deg at 1.5rem, #999 0deg 45deg, #0000 45deg 360deg),
+            linear-gradient(135deg, #eee, #ccc);
+            background-size: 2rem 2rem, 2rem 2rem, 100% 100%;
+            background-position: .75rem .25rem, 0, 0;
+            background-attachment: scroll, scroll, fixed;
+        }
+        main {
+            display: flex;
+            align-items: center;
+        }
+        h1 {
+            background-color: #eee6;
+            backdrop-filter: blur(4px);
+            padding: 1rem;
+            margin: 0;
+            box-shadow: 2px 2px 2px #3333;
+            transition: backdrop-filter 400ms ease-in-out, background-color 400ms ease-in-out;
+            background-color: #eeef;
+        }
+        h1:hover {
+            background-color: #eee9;
+            backdrop-filter: blur(1px);
+        }
+        .list {
+            max-width: max(370px, 48vw);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            flex-wrap: wrap;
+        }
+        .sample {
+            --hue: calc(var(--i) * 60);
+            background-color: hsla(var(--hue), 100%, 60%, 1);
+            margin: .125rem .25rem;
+            padding: 8px 12px;
+            font-size: 16px;
+            color: black;
+            border-radius: .25rem;
+        }
+
+        summary {
+            display: flex;
+            flex-direction: row;
+            cursor: help;
+        }
+
+        .ss {
+            display: flex;
+            height: 100px; min-width: 100px;
+            height: max-content; width: max-content;
+            max-width: 90vw;
+            background-image: linear-gradient(135deg, #eee, #ccc);
+            color: black;
+            padding: .25rem;
+            margin: 1rem;
+            margin-left: 4vw;
+            border-radius: .25rem;
+            text-align: left;
+            box-sizing: border-box;
+        }
+        .reading-link {
+            color: darkgoldenrod;
+            color: blue;
+            color: #3F51B5;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        details summary h2 {
+            margin: .25rem;
+            font-size: 1.25rem;
+        }
+        details summary {
+            border-bottom: 1px solid #0000;
+        }
+        details[open] summary {
+            border-bottom: 1px solid #000;
+        }
+        .ss {
+            box-shadow: 1px 1px 2px #3339;
+        }
+        .ss:has(details[open]) {
+            box-shadow: 4px 4px 8px #3339;
+        }
+        footer {
+            min-height: 36px;
+            box-sizing: border-box;
+            padding: .5rem;
+            color: hsla(210, 5%, 29%, 89%);
+            user-select: none;
+        }
+        footer .my-name {
+            position: fixed;
+            bottom: .5rem;
+            left: 1rem;
+            user-select: none;
+            bottom: 0px;
+            left: 0px;
+            padding: 9px;
+            background-color: #fff6;
+            backdrop-filter: blur(3px);
+            border-radius: 0 1rem 0 0;
+            border-top: 1px solid #9993;
+            border-right: 1px solid #9996;
+            color: #159;
+            color: hsl(210, 80%, 33%);
+            animation: color-me 2400ms linear infinite;
+            animation-play-state: paused;
+        }
+        footer .my-name:hover {
+            animation-play-state: running;
+        }
+        @keyframes color-me {
+            0% {color: hsla(210, 80%, 33%, 1);}
+            16% {color: hsla(270, 80%, 33%, 1);}
+            32% {color: hsla(330, 80%, 33%, 1);}
+            48% {color: hsla(30, 80%, 33%, 1);}
+            64% {color: hsla(90, 80%, 33%, 1);}
+            78% {color: hsla(150, 80%, 33%, 1);}
+            100% {color: hsla(210, 80%, 33%, 1);}
+        }
+        span.user {
+            font-family: 'Satisfy', cursive;
+        }
+
+    </style>
+</head>
+<body>
+    <header><h1>Las parábolas de Jesús</h1></header>
+    <main>
+        <div id="display" class="display">
+
+        </div>
+    </main>
+    <footer>
+        <div class="my-name">
+            © 2025 | by Stéfano De La Torre 
+        </div>
+    </footer>
+
+<script>
+const lessons = [
+{
+title: "Lección 1: Introducción a las parábolas",
+links: [
+    {type: "txt", text: "Mateo 13:13–15.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/13?lang=spa&id=p13-p15#p13"},
+    {type: "txt", text: "Marcos 4:12, 33–34.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/mark/4?lang=spa&id=p12,33-p34#p12"},
+    {type: "txt", text: "Lucas 8:10.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/luke/8?lang=spa&id=p10#p10"},
+    {type: "link", text: "", link: `Guía para el Estudio de las Escrituras, “<a class="reading-link" href:"https://www.churchofjesuschrist.org/study/scriptures/gs/parable?lang=spa">Parábola</a>”.`}
+],
+emanual: "",
+doctrines: [
+    `“La parábola le comunica al oyente verdades religiosas exactamente proporcionales a su fe e inteligencia… Solo el que busca encuentra” (Bible Dictionary, “Parables”, también puede ver “Parábolas”, en la Guía para el Estudio de las Escrituras).`,
+]
+},
+
+
+{
+title: "Lección 2: El Sembrador",
+links: [
+    {type: "txt", text: "Mateo 13:1–23.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/13?lang=spa&id=p1-p23#p1"},
+    {type: "txt", text: "Lucas 8:4–15.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/luke/8?lang=spa&id=p4-p15#p4"},
+    {type: "link", text: "", link: `“<a class="reading-link" href:"https://www.churchofjesuschrist.org/study/liahona/2007/07/parables-of-the-master?lang=spa">Las parábolas del Maestro</a>”, Liahona, julio de 2007, págs. 26–29.`}
+],
+emanual: "",
+doctrines: [
+    `A menos que nos esforcemos por profundizar y nutrir nuestro testimonio, quizá carezcamos de la fortaleza necesaria para soportar las tribulaciones, persecuciones y tentaciones (véanse Mateo 13:20–21; Lucas 8:13).`,
+    `Los afanes del mundo pueden distraernos, apartar nuestra atención del Señor y ahogar nuestra fe y nuestro testimonio (véase Mateo 13:22).`,
+    `Al abrir nuestro corazón a la palabra de Dios y recibirla, nos convertiremos al Salvador y llevaremos a cabo buenas obras (véase Mateo 13:23).`,
+]
+},
+
+{
+title: "Lección 3: El trigo y la cizaña",
+links: [
+    {type: "txt", text: "Mateo 13:24–30, 36–43.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/13?lang=spa&id=p24-p30,36-p43#p24"},
+],
+emanual: "",
+doctrines: [
+    `El Señor recogerá a los justos durante los últimos días, y luego destruirá a los inicuos en Su venida (véase Mateo 13:38–43).`,
+]
+},
+
+{
+title: "Lección 4: El grano de mostaza y la levadura escondida",
+links: [
+    {type: "txt", text: "Mateo 13:31–33.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/13?lang=spa&id=p31-p33#p31"},
+],
+emanual: "",
+doctrines: [
+    `La Iglesia restaurada de Jesucristo crecerá, desde unos humildes comienzos, hasta llenar toda la tierra (véase Mateo 13:31–33).`,
+]
+},
+
+{
+title: "Lección 5: El tesoro escondido y la perla de gran precio",
+links: [
+    {type: "txt", text: "Mateo 13:44–46.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/13?lang=spa&id=p44-p46#p44"},
+],
+emanual: "",
+doctrines: [
+    `Dado que las bendiciones del Evangelio tienen valor eterno, merecen cualquier sacrificio (véase Mateo 13:44–46).`,
+]
+},
+
+{
+title: "Lección 6: La red del Evangelio",
+links: [
+    {type: "txt", text: "Mateo 13:47–50.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/13?lang=spa&id=p47-p50#p47"},
+    {type: "link", text: "", link: `M. Russell Ballard, “<a class="reading-link" href:"https://www.churchofjesuschrist.org/study/general-conference/2008/10/the-truth-of-god-shall-go-forth?lang=spa">La verdad de Dios seguirá adelante</a>”, Liahona, noviembre de 2008, págs. 81–84.`}
+],
+emanual: "",
+doctrines: [
+    `Dios recogerá en Su Iglesia a todos Sus hijos, de toda clase (véase Mateo 13:47–50).`,
+]
+},
+
+{
+title: "Lección 7: El siervo sin misericordia",
+links: [
+    {type: "txt", text: "Mateo 18:21–35.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/18?lang=spa&id=p21-p35#p21"},
+],
+emanual: "",
+doctrines: [
+    `Jesucristo pagó un precio incalculable a fin de que se nos puedan perdonar nuestros pecados (véase Mateo 18:23–27).`,
+    `Si deseamos que el Señor nos perdone, debemos perdonar a los demás (véase Mateo 18:28–35).`,
+]
+},
+
+{
+title: "Lección 8: Los obreros de la viña",
+links: [
+    {type: "txt", text: "Mateo 20:1–16.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/20?lang=spa&id=p1-p16#p1"},
+    {type: "link", text: "", link: `Jeffrey R. Holland, “<a class="reading-link" href:"https://www.churchofjesuschrist.org/study/general-conference/2012/04/the-laborers-in-the-vineyard?lang=spa">Los obreros de la viña</a>”, Liahona, mayo de 2012, págs. 31–33.`}
+],
+emanual: "",
+doctrines: [
+    `Dios da la vida eterna a todas las personas que escogen hacer convenios sagrados con Él y cumplirlos (véase Mateo 20:1–10).`,
+    `Si optamos por tener envidia de las bendiciones que el Padre Celestial les da a otras personas, podríamos perder las bendiciones que Él desea darnos (véase Mateo 20:11–16).`,
+]
+},
+
+{
+title: "Lección 9: Los dos hijos",
+links: [
+    {type: "txt", text: "Mateo 21:28–32.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/21?lang=spa&id=p28-p32#p28"},
+    {type: "link", text: "", link: `David A. Bednar, “<a class="reading-link" href:"https://www.churchofjesuschrist.org/study/liahona/2012/04/the-atonement-and-the-journey-of-mortality?lang=spa">La Expiación y el trayecto de la vida mortal</a>”, Liahona, abril de 2012, págs. 12–19.`}
+],
+emanual: "",
+doctrines: [
+    `Para entrar en el Reino de Dios, debemos obedecer a nuestro Padre Celestial y arrepentirnos de nuestros pecados, en lugar de solamente decir o fingir que le obedecemos (véase Mateo 21:28–32).`,
+]
+},
+
+{
+title: "Lección 10: La boda del hijo del rey",
+links: [
+    {type: "txt", text: "Mateo 22:1–14.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/22?lang=spa&id=p1-p14#p1"},
+],
+emanual: "",
+doctrines: [
+    `Mediante nuestras acciones, demostramos hasta qué punto aceptamos realmente a Jesucristo como el Hijo de Dios (véase Mateo 22:1–14).`,
+]
+},
+
+{
+title: "Lección 11: La higuera",
+links: [
+    {type: "txt", text: "Mateo 24:32–34.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/24?lang=spa&id=p32-p34#p32"},
+],
+emanual: "",
+doctrines: [
+    `Aunque nadie sabe cuál será el día y la hora de la segunda venida del Señor, al buscar y reconocer las señales de los tiempos, podemos saber que se acerca el momento (véase Mateo 24:32–34).`,
+]
+},
+
+{
+title: "Lección 12: Las diez vírgenes",
+links: [
+    {type: "txt", text: "Mateo 25:1–13.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/25?lang=spa&id=p1-p13#p1"},
+    {type: "link", text: "", link: `Dallin H. Oaks, “<a class="reading-link" href:"https://www.churchofjesuschrist.org/study/general-conference/2004/04/preparation-for-the-second-coming?lang=spa">La preparación para la Segunda Venida</a>”, Liahona, mayo de 2004, págs. 7–10.`},
+    {type: "link", text: "", link: `“<a class="reading-link" href:"https://www.churchofjesuschrist.org/study/liahona/2009/03/the-parable-of-the-ten-virgins?lang=spa">La parábola de las diez vírgenes</a>”, Liahona, marzo de 2009, págs. 20–21.`}
+],
+emanual: "",
+doctrines: [
+    `No podemos tomar prestadas ni la preparación espiritual ni la fortaleza de otras personas (véase Mateo 25:8–9).`,
+    `Nos preparamos para estar frente al Salvador al fortalecer nuestro testimonio y nuestra conversión mediante la rectitud diaria (véase Mateo 25:1–13).`,
+    `Para estar listos para la segunda venida del Señor y ser dignos de permanecer en Su presencia, debemos llegar a conocerlo (véase Mateo 25:12).`,
+]
+},
+
+{
+title: "Lección 13: Los talentos",
+links: [
+    {type: "txt", text: "Mateo 25:14–30.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/matt/25?lang=spa&id=p14-p30#p14"},
+    {type: "link", text: "", link: `Ronald A. Rasband, “<a class="reading-link" href:"https://www.churchofjesuschrist.org/study/liahona/2003/08/parables-of-jesus-the-parable-of-the-talents?lang=spa">Parábolas de Jesús: La parábola de los talentos</a>”, Liahona, agosto de 2003, págs. 34–37.`}
+],
+emanual: "",
+doctrines: [
+    `Si usamos fielmente los dones y las habilidades que el Señor nos ha dado, podremos alcanzar nuestro potencial divino y recibir la vida eterna (véase Mateo 25:19–21).`,
+    `El Señor nos bendecirá si usamos fielmente los dones y las habilidades que Él nos ha dado, independientemente de cuántos tengamos o de cuáles sean (véase Mateo 25:22–23).`,
+    `Si no cultivamos ni usamos nuestros dones espirituales para hacer el bien, los perderemos (véase Mateo 25:24–29).`,
+]
+},
+
+{
+title: "Lección 14: La semilla que crece sola",
+links: [
+    {type: "txt", text: "Marcos 4:26–29.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/mark/4?lang=spa&id=p26-p29#p26"},
+    {type: "link", text: "", link: `Dieter F. Uchtdorf, “<a class="reading-link" href:"https://www.churchofjesuschrist.org/study/general-conference/2015/10/it-works-wonderfully?lang=spa">¡Funciona de maravilla!</a>”, Liahona, noviembre de 2015, págs. 20–23.`}
+],
+emanual: "",
+doctrines: [
+    `Únicamente Dios puede conceder la bendición del crecimiento espiritual; pero nosotros debemos hacer nuestra parte para nutrirlo (véase Marcos 4:26–29).`,
+]
+},
+
+{
+title: "Lección 15: Los dos deudores",
+links: [
+    {type: "txt", text: "Lucas 7:36–50.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/luke/7?lang=spa&id=p36-p50#p36"},
+    {type: "link", text: "", link: `Russell M. Nelson, “<a class="reading-link" href:"ttps://www.churchofjesuschrist.org/study/general-conference/2007/04/repentance-and-conversion?lang=spa">El arrepentimiento y la conversión</a>”, Liahona, mayo de 2007, págs. 102–105.`}
+],
+emanual: "",
+doctrines: [
+    `A medida que ejerzamos nuestra fe mostrando amor y dedicación al Señor, podremos recibir Su perdón. Al recibir el perdón del Señor, sentimos el deseo de amarlo y servirle aún más (véase Lucas 7:36–50).`,
+]
+},
+
+{
+title: "Lección 16: El buen samaritano",
+links: [
+    {type: "txt", text: "Lucas 10:25–37.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/luke/10?lang=spa&id=p25-p37#p25"},
+    {type: "link", text: "", link: `Thomas S. Monson, “<a class="reading-link" href:"https://www.churchofjesuschrist.org/study/liahona/2012/08/the-saviors-call-to-serve?lang=spa">El llamado del Señor a prestar servicio</a>”, Liahona, agosto de 2012, págs. 4–5.`}
+],
+emanual: "",
+doctrines: [
+    `A fin de obtener la vida eterna, debemos amar a Dios con todo nuestro corazón y amar a nuestro prójimo como a nosotros mismos (véase Lucas 10:25–37).`,
+]
+},
+
+{
+title: "Lección 17: El amigo importunado",
+links: [
+    {type: "txt", text: "Lucas 11:1–13.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/luke/11?lang=spa&id=p1-p13#p1"},
+    {type: "link", text: "", link: `David A. Bednar, “<a class="reading-link" href:"https://www.churchofjesuschrist.org/study/general-conference/2008/04/ask-in-faith?lang=spa">Pedir con fe</a>”, Liahona, mayo de 2008, págs. 94–97.`}
+],
+emanual: "",
+doctrines: [
+    `Si oramos y buscamos con persistencia las bendiciones del Padre Celestial en épocas de necesidad, Él contestará nuestras oraciones de la manera que sea mejor para nosotros (véase Lucas 11:5–13).`,
+]
+},
+
+{
+title: "Lección 18: El rico necio",
+links: [
+    {type: "txt", text: "Lucas 12:13–21.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/luke/12?lang=spa&id=p13-p21#p13"},
+],
+emanual: "",
+doctrines: [
+    `Las bendiciones más grandes de esta vida no son las posesiones materiales (véase Lucas 12:13–21).`,
+    `El Señor nos manda que no codiciemos las posesiones de este mundo (véase Lucas 12:15).`,
+]
+},
+
+{
+title: "Lección 19: La higuera estéril",
+links: [
+    {type: "txt", text: "Lucas 13:1–9.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/luke/13?lang=spa&id=p1-p9#p1"},
+    {type: "link", text: "", link: `Quentin L. Cook, “<a class="reading-link" href:"<https://www.churchofjesuschrist.org/study/liahona/2015/07/reaping-the-rewards-of-righteousness?lang=spa">Cosechar las recompensas de la rectitud</a>”, Liahona, julio de 2015, págs. 26–33.`}
+],
+emanual: "",
+doctrines: [
+    `Si no nos arrepentimos y hacemos buenas obras, pereceremos (véase Lucas 13:1–9).`,
+]
+},
+
+{
+title: "Lección 20: La oveja perdida y la moneda perdida",
+links: [
+    {type: "txt", text: "Lucas 15:1–10.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/luke/15?lang=spa&id=p1-p10#p1"},
+],
+emanual: "",
+doctrines: [
+    `Cada alma es de gran valor para el Padre Celestial y para Jesucristo (véase Lucas 15:7, 10).`,
+    `Cuando ayudamos a otras personas a sentir el deseo de arrepentirse, sentimos gozo y los cielos se regocijan (véase Lucas 15:1–10).`,
+]
+},
+
+{
+title: "Lección 21: El hijo pródigo",
+links: [
+    {type: "txt", text: "Lucas 15:11-32.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/luke/15?lang=spa&id=p11-p32#p11"},
+    {type: "link", text: "", link: `Jeffrey R. Holland, “<a class="reading-link" href:"https://www.churchofjesuschrist.org/study/general-conference/2002/04/the-other-prodigal?lang=spa">El otro hijo pródigo</a>”, Liahona, julio de 2002, págs. 69–72.`}
+],
+emanual: "",
+doctrines: [
+    `Si regresamos al Padre Celestial por medio del arrepentimiento y buscamos Su perdón, Él se regocijará y nos recibirá de nuevo con los brazos abiertos (véase Lucas 15:11–32).`,
+    `Podemos llegar a ser más semejantes al Padre Celestial al reaccionar con compasión y gozo cuando otras personas se arrepienten (véase Lucas 15:25–32).`,
+]
+},
+
+{
+title: "Lección 22: El mayordomo injusto",
+links: [
+    {type: "txt", text: "Lucas 16:1–12.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/luke/16?lang=spa&id=p1-p12#p1"},
+    {type: "link", text: "", link: `Henry B. Eyring, “<a class="reading-link" href:"https://www.churchofjesuschrist.org/study/general-conference/2010/04/act-in-all-diligence?lang=spa">Obrar con toda diligencia</a>”, Liahona, mayo de 2010, págs. 60–63.`}
+],
+emanual: "",
+doctrines: [
+    `Si nos preparamos sabiamente para nuestro futuro eterno y utilizamos con rectitud las riquezas de la tierra, podemos ser bendecidos con riquezas eternas (véase Lucas 16:1–12).`,
+]
+},
+
+{
+title: "Lección 23: Lázaro y el hombre rico",
+links: [
+    {type: "txt", text: "Lucas 16:19–31.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/luke/16?lang=spa&id=p19-p31#p19"},
+    {type: "link", text: "", link: `Gordon B. Hinckley, “<a class="reading-link" href:"https://www.churchofjesuschrist.org/study/general-conference/1990/04/blessed-are-the-merciful?lang=spa">Bienaventurados los misericordiosos…</a>”, Liahona, julio de 1990, págs. 81–84.`}
+],
+emanual: "",
+doctrines: [
+    `Si somos avaros y no utilizamos con rectitud nuestras riquezas terrenales, finalmente sentiremos pesar y remordimiento (véase Lucas 16:19–26).`,
+    `La conversión llega al creer y dar oído a las palabras de los profetas, no al presenciar milagros (véase Lucas 16:27–31).`,
+]
+},
+
+{
+title: "Lección 24: El juez injusto",
+links: [
+    {type: "txt", text: "Lucas 18:1–8.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/luke/18?lang=spa&id=p1-p8#p1"},
+    {type: "link", text: "", link: `David A. Bednar, “<a class="reading-link" href:"https://www.churchofjesuschrist.org/study/general-conference/2010/04/watching-with-all-perseverance?lang=spa">Velando… con toda perseverancia</a>”, Liahona, mayo de 2010, págs. 40–43.`}
+],
+emanual: "",
+doctrines: [
+    `Si somos sinceros y perseveramos en nuestra fidelidad al Señor, obtendremos Su misericordia (véase Lucas 18:1–8).`,
+]
+},
+
+{
+title: "Lección 25: El fariseo y el publicano",
+links: [
+    {type: "txt", text: "Lucas 18:9–14.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/luke/18?lang=spa&id=p9-p14#p9"},
+    {type: "link", text: "", link: `*Howard W. Hunter, “<a class="reading-link" href:"https://www.churchofjesuschrist.org/study/general-conference/1984/04/the-pharisee-and-the-publican?lang=eng">El fariseo y el publicano</a>”, Liahona, julio de 1984, págs. 107–110.`}
+],
+emanual: "",
+doctrines: [
+    `Dios justifica a quienes se humillan y buscan Su misericordia (véase Lucas 18:9–14).`,
+]
+},
+
+{
+title: "Lección 26: El Buen Pastor",
+links: [
+    {type: "txt", text: "Juan 10:1–18.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/john/10?lang=spa&id=p1-p18#p1"},
+],
+emanual: "",
+doctrines: [
+    `Jesucristo nos conoce y nos ama a cada uno, y dio Su vida por nosotros (véase Juan 10:14–15).`,
+]
+},
+
+{
+title: "Lección 27: La vid y los pámpanos",
+links: [
+    {type: "txt", text: "Juan 15:1–8.", link: "https://www.churchofjesuschrist.org/study/scriptures/nt/john/15?lang=spa&id=p1-p8#p1"},
+    {type: "link", text: "", link: `Jeffrey R. Holland, “<a class="reading-link" href:"https://www.churchofjesuschrist.org/study/general-conference/2004/04/abide-in-me?lang=spa">Permaneced en Mí</a>”, Liahona, mayo de 2004, págs. 30–32.`}
+],
+emanual: "",
+doctrines: [
+    `“Para que el fruto del Evangelio florezca y bendiga nuestra vida, debemos ceñirnos con firmeza a Él, el Salvador de todos nosotros, así como a Su Iglesia, que lleva Su santo nombre” (Jeffrey R. Holland, “Permaneced en Mí”, Liahona, mayo de 2004, pág. 32).`,
+]
+},
+];
+
+function BuildMap(){
+    let display = document.getElementById("display");
+    for (let i = 0; i < lessons.length; i++) {
+        const e = lessons[i];
+        
+        let card = document.createElement("div");
+        card.classList.add("ss");
+
+        let dcard = document.createElement("details");
+        card.appendChild(dcard);
+        let summary = document.createElement("summary");
+        dcard.appendChild(summary);
+
+        let title = document.createElement("h2");
+        title.classList.add("card-title");
+        title.innerText = e.title;
+        summary.appendChild(title);
+        
+        let st1 = document.createElement("h3");
+        st1.innerText = `Material sugerido para la lección`;
+        dcard.appendChild(st1);
+        let linksList = document.createElement("ul");
+
+        for (let j = 0; j < e.links.length; j++) {
+            let li = document.createElement("li");
+            let el = e.links[j];
+            if(el.type == "txt") {
+                let link = document.createElement("a");
+                link.classList.add("reading-link");
+                link.innerText = el.text;
+                link.href = el.link;
+                li.appendChild(link);
+            } else {
+                li.innerHTML = el.link;
+            }
+            linksList.appendChild(li);
+        }
+        dcard.appendChild(linksList);
+        
+        
+        let st2 = document.createElement("h3");
+        st2.innerText = `Doctrina, principios y conceptos clave`;
+        dcard.appendChild(st2);
+        let doctrineList = document.createElement("ul");
+
+        for (let j = 0; j < e.doctrines.length; j++) {
+            let li = document.createElement("li");
+            li.innerText = e.doctrines[j];
+            doctrineList.appendChild(li);
+        }
+        dcard.appendChild(doctrineList);
+
+        display.appendChild(card);
+    }
+}
+
+window.addEventListener('load', (ev) => {
+    // start();
+    // update();
+    BuildMap();
+});
+
+</script>
+</body>
+</html>
